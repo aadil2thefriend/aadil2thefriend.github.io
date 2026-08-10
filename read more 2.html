@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miraculous Season 7 Arriving in November 2026: The Ultimate Reveal Awaits! | Miraculous Network</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       1. CORE DESIGN SYSTEM & THEME VARIABLES
+       ========================================================================== */
+    :root {
+      --primary: #E60026;
+      --primary-hover: #c40020;
+      --secondary: #121212;
+      --accent-green: #00FF33;
+      --accent-gold: #FFD700;
+      --bg-main: #f8f9fc;
+      --bg-card: #ffffff;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --border-color: #e5e7eb;
+      --dots-opacity: 0.05;
+      --shadow: 0 10px 25px -5px rgba(230, 0, 38, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+      --radius: 16px;
+    }
+
+    [data-theme="dark"] {
+      --primary: #00FF33;
+      --primary-hover: #00cc29;
+      --secondary: #1f2937;
+      --accent-green: #E60026;
+      --accent-gold: #FFD700;
+      --bg-main: #0b0f19;
+      --bg-card: #151c2c;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border-color: #2d3748;
+      --dots-opacity: 0.02;
+      --shadow: 0 10px 25px -5px rgba(0, 255, 51, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.7;
+      background-image: radial-gradient(rgba(0,0,0,var(--dots-opacity)) 2px, transparent 2px);
+      background-size: 24px 24px;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ==========================================================================
+       2. HEADER & NAVIGATION
+       ========================================================================== */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--primary);
+    }
+
+    [data-theme="dark"] .header {
+      background: rgba(11, 15, 25, 0.85);
+    }
+
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--primary);
+      text-transform: uppercase;
+    }
+
+    .logo-emblem {
+      width: 36px;
+      height: 36px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px rgba(230, 0, 38, 0.5);
+    }
+
+    .logo-emblem::after {
+      content: "🐞";
+      font-size: 1.2rem;
+    }
+
+    [data-theme="dark"] .logo-emblem::after {
+      content: "🐾";
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .controls-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .toggle-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .toggle-btn:hover {
+      border-color: var(--primary);
+    }
+
+    /* ==========================================================================
+       3. ARTICLE HEADER & BREADCRUMBS
+       ========================================================================== */
+    .article-container {
+      max-width: 1280px;
+      margin: 2rem auto 4rem auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 2.5fr 1fr;
+      gap: 2.5rem;
+    }
+
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .breadcrumbs a:hover {
+      color: var(--primary);
+    }
+
+    .article-header {
+      margin-bottom: 2rem;
+    }
+
+    .badge-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .badge {
+      padding: 0.35rem 0.85rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-primary { background-color: var(--primary); color: #fff; }
+    .badge-gold { background-color: var(--accent-gold); color: #000; }
+    .badge-spoiler { background-color: #8b5cf6; color: #fff; }
+
+    .article-title {
+      font-size: 2.5rem;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+
+    .author-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .author-info {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .author-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       4. ARTICLE BODY CONTENT
+       ========================================================================== */
+    .article-hero-img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .article-body {
+      font-size: 1.1rem;
+      color: var(--text-main);
+    }
+
+    .article-body p {
+      margin-bottom: 1.5rem;
+    }
+
+    .article-body h2 {
+      font-size: 1.75rem;
+      margin: 2.5rem 0 1rem 0;
+      color: var(--text-main);
+    }
+
+    .kwami-quote-box {
+      background: linear-gradient(135deg, rgba(230, 0, 38, 0.08) 0%, rgba(255, 215, 0, 0.08) 100%);
+      border-left: 5px solid var(--primary);
+      padding: 1.5rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 2rem 0;
+      font-style: italic;
+    }
+
+    .kwami-quote-box strong {
+      display: block;
+      margin-top: 0.5rem;
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    /* Spoiler Shield Effect for Body Text */
+    .spoiler-protected .spoiler-block {
+      filter: blur(8px);
+      user-select: none;
+      background: rgba(139, 92, 246, 0.1);
+      padding: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: filter 0.3s ease;
+    }
+
+    .spoiler-protected .spoiler-block:hover {
+      filter: blur(0);
+    }
+
+    /* Article Reactions Bar */
+    .reactions-bar {
+      display: flex;
+      gap: 1rem;
+      margin: 3rem 0;
+      padding: 1.5rem;
+      background-color: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      justify-content: space-around;
+      text-align: center;
+    }
+
+    .reaction-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      font-family: inherit;
+      color: var(--text-main);
+    }
+
+    .reaction-btn:hover span:first-child {
+      transform: scale(1.2);
+    }
+
+    .reaction-btn span:first-child {
+      font-size: 1.8rem;
+      transition: transform 0.2s ease;
+    }
+
+    /* ==========================================================================
+       5. SIDEBAR WIDGETS
+       ========================================================================== */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .widget {
+      background-color: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      position: relative;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: -0.5rem;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background-color: var(--primary);
+    }
+
+    .mini-card {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+
+    .mini-card-img {
+      width: 70px;
+      height: 70px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .mini-card-title {
+      font-size: 0.9rem;
+      line-height: 1.3;
+      font-weight: 700;
+    }
+
+/* Countdown Widget */
+    .countdown-widget {
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 15px;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+
+    .countdown-widget h3 {
+      margin-top: 0;
+      font-size: 16px;
+      color: #333333;
+      margin-bottom: 12px;
+    }
+
+    .timer-display {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .time-box {
+      flex: 1;
+      background-color: #222222;
+      color: #ffffff;
+      padding: 8px 4px;
+      border-radius: 6px;
+    }
+
+    .time-box span {
+      display: block;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .time-box label {
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: #cccccc;
+      margin-top: 2px;
+    }
+
+    .share-btn {
+      padding: 0.6rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .share-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* ==========================================================================
+       6. FOOTER
+       ========================================================================== */
+    .footer {
+      background-color: var(--secondary);
+      color: #ffffff;
+      padding: 3rem 1.5rem 1.5rem 1.5rem;
+      border-top: 4px solid var(--primary);
+    }
+
+    .footer-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-brand {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .footer-disclaimer {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      margin-top: 1rem;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 900px) {
+      .article-container {
+        grid-template-columns: 1fr;
+      }
+      .article-title {
+        font-size: 1.8rem;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body data-theme="light">
+
+  <!-- ==========================================================================
+       HEADER / NAV BAR
+       ========================================================================== -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-emblem"></div>
+        <span>Miraculous Network</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Latest News</a></li>
+        <li><a href="#">Episodes</a></li>
+        <li><a href="#">Kwamis & Lore</a></li>
+        <li><a href="#">Theories</a></li>
+      </ul>
+
+      <div class="controls-group">
+        <button class="toggle-btn" id="themeToggle" title="Toggle Day/Night Mode">
+          <span id="themeIcon">☀️</span> <span id="themeLabel">Paris Day</span>
+        </button>
+
+        <button class="toggle-btn" id="spoilerToggle" style="border-color: #8b5cf6;">
+          <span>🛡️ Spoilers:</span> <span id="spoilerLabel" style="color: #8b5cf6; font-weight:700;">HIDDEN</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN ARTICLE CONTENT LAYOUT
+       ========================================================================== -->
+  <div class="article-container spoiler-protected" id="mainContent">
+    
+    <!-- LEFT MAIN COLUMN: ARTICLE DETAIL -->
+    <main>
+      <div class="breadcrumbs">
+        <a href="index.html">Home</a> <span>›</span> 
+        <a href="#">Production</a> <span>›</span> 
+        <span>Season 7 Updates</span>
+      </div>
+
+      <header class="article-header">
+        <div class="badge-group">
+          <span class="badge badge-primary">Official Announcement</span>
+          <span class="badge badge-gold">Season 7</span>
+        </div>
+        <h1 class="article-title">Miraculous Season 7 Arriving in November 2026: The Ultimate Reveal Awaits!</h1>
+        
+        <div class="author-bar">
+          <div class="author-info">
+            <div class="author-avatar">A</div>
+            <div>
+              <div style="font-weight: 700; color: var(--text-main);">By Alya Césaire</div>
+              <div style="font-size: 0.75rem;">Senior Reporter @ The Ladyblog</div>
+            </div>
+          </div>
+          <div>
+            📅 Published: August 8, 2026 &nbsp;•&nbsp; ⏱️ 4 min read
+          </div>
+        </div>
+      </header>
+
+      <!-- Featured Image -->
+      <img src="Season 7.jpg" alt="Eiffel Tower Paris render" class="article-hero-img">
+
+      <!-- Article Text Body -->
+      <article class="article-body">
+        <p>Parisian miraculous fans, rejoice! Producer Jeremy Zag officially confirmed via Instagram today that animation rendering for the upcoming <strong>Season 6 of Miraculous: Tales of Ladybug & Cat Noir</strong> has officially transitioned into its final post-production phase.</p>
+
+        <p>Following the emotional climax of Season 5, the production team at ZAG Studios and Method Animation has spent over 18 months rebuilding the visual architecture of Paris from the ground up using an updated Unreal Engine rendering pipeline.</p>
+
+        <div class="kwami-quote-box">
+          "The upgraded lighting and character modeling allow us to show Paris with a level of magical realism never before seen in television animation."
+          <strong>— Jeremy Zag, Founder of ZAG Entertainment</strong>
+        </div>
+
+        <h2>What's New in Season 7?</h2>
+
+        <p>According to Gloob during Miraculous Day, Season 7 will show and confirm some new things which are -
+           <br>– Confirmation that Lila is Tomoe’s daughter and Kagami is her sister<br>
+           <br>– A Brazilian villain will debut<br>
+           <br>– Adrien will have a new haircut<br>
+           <br>– Ladybug will return to Rio de Janeiro<br>
+           <br>– Nathalie’s father will appear for the first time</p>
+
+        <h2>Official Sypnosis of Season 7</h2>
+        <p>In the first episodes of Season 7, Marinette’s personal life is shaken: she discovers new allies she can rely on and talk to more openly than ever before. Unfortunately for her, she also learns that some people around her are not who they claim to be and might betray her at the first opportunity. At the same time, her relationship with Adrien takes a new turn: no longer able to bear hiding more and more secrets from him, Marinette decides to reveal the unthinkable to her longtime love… </p>
+
+        <p>The end of Season 6 and the beginning of Season 7 promise to be more epic and emotional than ever! With these new episodes, the phenomenon series born over 10 years ago on TFOU has everything it needs to keep surprising and captivating all its fans!</p>
+
+      <!-- Featured Image -->
+      <img src="Season 7 Sypnosis.png" alt="Eiffel Tower Paris render" class="article-hero-img">
+
+       
+       <h2>Updated Global Premiere Schedule</h2>
+        <p>While an exact broadcast date varies by region, streaming partnerships are locked in:</p>
+        <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+          <li><strong>TF1 (France / TFOU):</strong> Expected 2026–2027 lineup</li>
+          <li><strong>Disney+:</strong> Worldwide release on 21st November, 2026</li>
+          <li><strong>Disney Channel USA:</strong> TV release on 20th November, 2026</li>
+          <li><strong>Gloob (Brazil):</strong> Not Announced</li>
+        </ul>
+
+        <p>Stay tuned to Miraculous Network as we bring you live trailer breakdowns and voice actor interviews throughout the week!</p>
+      </article>
+
+      <!-- Fan Reactions Widget -->
+      <div class="reactions-bar">
+        <button class="reaction-btn">
+          <span>🐞</span>
+          <span style="font-weight: 700; font-size: 0.85rem;">Lucky Charm!</span>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">1,420</span>
+        </button>
+        <button class="reaction-btn">
+          <span>🐾</span>
+          <span style="font-weight: 700; font-size: 0.85rem;">Claws Out!</span>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">980</span>
+        </button>
+        <button class="reaction-btn">
+          <span>🧀</span>
+          <span style="font-weight: 700; font-size: 0.85rem;">Camembert!</span>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">512</span>
+        </button>
+      </div>
+
+    </main>
+
+    <!-- RIGHT COLUMN: SIDEBAR -->
+    <aside class="sidebar">
+
+      <!-- Share Article Widget -->
+      <div class="widget">
+        <h3 class="section-title">Share Article</h3>
+        <div class="share-buttons">
+          <button class="share-btn" onclick="navigator.clipboard.writeText(window.location.href); alert('Link Copied!');">🔗 Copy Link</button>
+          <button class="share-btn">🐦 Twitter / X</button>
+        </div>
+      </div>
+
+      <!-- Related News Widget -->
+      <div class="widget">
+        <h3 class="section-title">Related Stories</h3>
+        
+        <a href="read more.html" class="mini-card">
+          <img src="Season 6.jpg" auto=format&fit=crop&w=200&q=80" alt="Butterfly" class="mini-card-img">
+          <div>
+            <div class="mini-card-title">Season 6 Finally ended with total of 26 Episodes</div>
+            <span style="font-size: 0.75rem; color: var(--text-muted);">Aug 8, 2026</span>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/show/VLPLfkxw3Qnj-T8?season=1&sbp=CgExGgAqC0lIR2RvUEZsWTlVQAFKDVBTYXFXMER4a05QQVE%253D" class="mini-card">
+          <img src="chibi.png" auto=format&fit=crop&w=200&q=80" alt="Action figure" class="mini-card-img">
+          <div>
+            <div class="mini-card-title">Watch Miraculous All Chibi Episodes NOW!</div>
+            <span style="font-size: 0.75rem; color: var(--text-muted);">Aug 5, 2026</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Countdown Widget Below Related Stories -->
+      <div class="countdown-widget" id="countdown">
+      <div class="countdown-info">
+      <span style="font-size: 1.75rem;">📺</span>
+      <div>
+      <h3 style="font-size: 1rem; font-weight: 700;">Season 7 Episode 1</h4>
+        <p style="font-size: 0.8rem; opacity: 0.8;">"Airing On 20th November 2026"</p>
+      <div class="timer-display">
+        <div class="time-box">
+          <span id="days">00</span>
+          <label>Days</label>
+        </div>
+        <div class="time-box">
+          <span id="hours">00</span>
+          <label>Hours</label>
+        </div>
+        <div class="time-box">
+          <span id="mins">00</span>
+          <label>Mins</label>
+        </div>
+        <div class="time-box">
+          <span id="secs">00</span>
+          <label>Secs</label>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Set the destination date and time
+      const targetDate = new Date("Nov 20, 2026 00:00:00").getTime();
+
+      // Run immediately on load
+      updateTimer(); 
+      
+      // Update countdown every second
+      const timerInterval = setInterval(updateTimer, 1000);
+
+      function updateTimer() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        const daysEl = document.getElementById("days");
+        const hoursEl = document.getElementById("hours");
+        const minsEl = document.getElementById("mins");
+        const secsEl = document.getElementById("secs");
+
+        if (daysEl && hoursEl && minsEl && secsEl) {
+          daysEl.innerText = String(days).padStart(2, '0');
+          hoursEl.innerText = String(hours).padStart(2, '0');
+          minsEl.innerText = String(minutes).padStart(2, '0');
+          secsEl.innerText = String(seconds).padStart(2, '0');
+        }
+
+        if (distance < 0) {
+          clearInterval(timerInterval);
+          const countdownEl = document.getElementById("countdown");
+          if (countdownEl) {
+            countdownEl.innerHTML = "<h3>THE EVENT HAS STARTED!</h3>";
+          }
+        }
+      }
+    });
+  </script>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div>
+        <div class="footer-brand">🐞 MIRACULOUS NETWORK</div>
+        <p style="font-size: 0.85rem; opacity: 0.8;">The premier fan news hub for everything Miraculous: Tales of Ladybug & Cat Noir.</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 0.75rem; font-size: 0.95rem;">Quick Links</h4>
+        <p style="font-size: 0.85rem; opacity: 0.8; line-height: 1.8;">
+          <a href="index.html">Home</a><br>
+          <a href="#">Episode Guide</a><br>
+          <a href="#">Character Database</a>
+        </p>
+      </div>
+    </div>
+    <div style="text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+      <p class="footer-disclaimer">Miraculous™ is a trademark of ZAG Animation. Unofficial fan site.</p>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       JAVASCRIPT LOGIC
+       ========================================================================== -->
+  <script>
+    // Theme Switcher
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeLabel = document.getElementById('themeLabel');
+
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = document.body.getAttribute('data-theme');
+      if (currentTheme === 'light') {
+        document.body.setAttribute('data-theme', 'dark');
+        themeIcon.textContent = '🌙';
+        themeLabel.textContent = 'Paris Night';
+      } else {
+        document.body.setAttribute('data-theme', 'light');
+        themeIcon.textContent = '☀️';
+        themeLabel.textContent = 'Paris Day';
+      }
+    });
+
+    // Spoiler Shield Logic
+    const spoilerToggleBtn = document.getElementById('spoilerToggle');
+    const spoilerLabel = document.getElementById('spoilerLabel');
+    const mainContent = document.getElementById('mainContent');
+    let spoilersHidden = true;
+
+    spoilerToggleBtn.addEventListener('click', () => {
+      spoilersHidden = !spoilersHidden;
+      if (spoilersHidden) {
+        mainContent.classList.add('spoiler-protected');
+        spoilerLabel.textContent = 'HIDDEN';
+        spoilerLabel.style.color = '#8b5cf6';
+      } else {
+        mainContent.classList.remove('spoiler-protected');
+        spoilerLabel.textContent = 'REVEALED';
+        spoilerLabel.style.color = '#ef4444';
+      }
+    });
+  </script>
+</body>
+</html>
+
+```

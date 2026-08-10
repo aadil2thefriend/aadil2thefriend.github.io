@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miraculous News Network | Latest News, Spoilers & Lore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       1. CORE DESIGN SYSTEM & THEME VARIABLES
+       ========================================================================== */
+    :root {
+      /* Ladybug Theme (Light/Default) */
+      --primary: #E60026;
+      --primary-hover: #c40020;
+      --secondary: #121212;
+      --accent-green: #00FF33;
+      --accent-gold: #FFD700;
+      --bg-main: #f8f9fc;
+      --bg-card: #ffffff;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --border-color: #e5e7eb;
+      --dots-opacity: 0.05;
+      --shadow: 0 10px 25px -5px rgba(230, 0, 38, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+      --radius: 16px;
+    }
+
+    /* Cat Noir Theme (Dark Mode) */
+    [data-theme="dark"] {
+      --primary: #00FF33;
+      --primary-hover: #00cc29;
+      --secondary: #1f2937;
+      --accent-green: #E60026;
+      --accent-gold: #FFD700;
+      --bg-main: #0b0f19;
+      --bg-card: #151c2c;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border-color: #2d3748;
+      --dots-opacity: 0.02;
+      --shadow: 0 10px 25px -5px rgba(0, 255, 51, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      background-image: radial-gradient(var(--text-main) 1px, transparent 1px);
+      background-size: 24px 24px;
+      background-position: 0 0;
+      /* Subtitle ladybug spots pattern effect */
+      background-image: radial-gradient(rgba(0,0,0,var(--dots-opacity)) 2px, transparent 2px);
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ==========================================================================
+       2. HEADER & NAVIGATION
+       ========================================================================== */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--primary);
+    }
+
+    [data-theme="dark"] .header {
+      background: rgba(11, 15, 25, 0.85);
+    }
+
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--primary);
+      text-transform: uppercase;
+    }
+
+    .logo-emblem {
+      width: 36px;
+      height: 36px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px rgba(230, 0, 38, 0.5);
+    }
+
+    .logo-emblem::after {
+      content: "🐞";
+      font-size: 1.2rem;
+    }
+
+    [data-theme="dark"] .logo-emblem::after {
+      content: "🐾";
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .controls-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* Toggle Switches */
+    .toggle-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .toggle-btn:hover {
+      border-color: var(--primary);
+    }
+
+    /* ==========================================================================
+       3. HERO SECTION
+       ========================================================================== */
+    .hero-container {
+      max-width: 1280px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .hero-card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      min-height: 480px;
+      display: flex;
+      align-items: flex-end;
+      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), 
+                  url('Nemesis.jpg') center/cover no-repeat;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-content {
+      padding: 3rem;
+      color: #ffffff;
+      max-width: 800px;
+      z-index: 2;
+    }
+
+    .badge-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .badge {
+      padding: 0.35rem 0.85rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-primary { background-color: var(--primary); color: #fff; }
+    .badge-gold { background-color: var(--accent-gold); color: #000; }
+    .badge-spoiler { background-color: #8b5cf6; color: #fff; }
+
+    .hero-title {
+      font-size: 2.75rem;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: 30px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(230, 0, 38, 0.4);
+    }
+
+    /* ==========================================================================
+       4. COUNTDOWN BAR
+       ========================================================================== */
+    .countdown-bar {
+      background: var(--secondary);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 1.25rem 2rem;
+      margin: 2rem auto;
+      max-width: 1280px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-left: 6px solid var(--primary);
+    }
+
+    .countdown-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .countdown-timer {
+      display: flex;
+      gap: 1rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .time-block {
+      text-align: center;
+      background: rgba(255,255,255,0.1);
+      padding: 0.5rem 0.85rem;
+      border-radius: 8px;
+      min-width: 65px;
+    }
+
+    .time-num {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .time-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    /* ==========================================================================
+       5. MAIN CONTENT LAYOUT (FEED + SIDEBAR)
+       ========================================================================== */
+    .main-layout {
+      max-width: 1280px;
+      margin: 0 auto 3rem auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 2.2fr 1fr;
+      gap: 2.5rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: -0.85rem;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: var(--primary);
+    }
+
+    /* Article Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background-color: var(--bg-card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .card-img-wrapper {
+      position: relative;
+      height: 180px;
+      overflow: hidden;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover .card-img {
+      transform: scale(1.05);
+    }
+
+    .card-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      line-height: 1.35;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-excerpt {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    /* Spoiler Blur Filter */
+    .spoiler-protected .spoiler-text {
+      filter: blur(6px);
+      user-select: none;
+      transition: filter 0.3s ease;
+    }
+
+    .spoiler-protected .spoiler-text:hover {
+      filter: blur(0);
+    }
+
+    /* Sidebar Widgets */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .widget {
+      background-color: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .kwami-card {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(230, 0, 38, 0.05) 100%);
+      border: 1px solid var(--accent-gold);
+    }
+
+    .kwami-avatar {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 1rem auto;
+      border-radius: 50%;
+      background: #ffffff;
+      padding: 5px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .kwami-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* ==========================================================================
+       6. FOOTER
+       ========================================================================== */
+    .footer {
+      background-color: var(--secondary);
+      color: #ffffff;
+      padding: 3rem 1.5rem 1.5rem 1.5rem;
+      border-top: 4px solid var(--primary);
+    }
+
+    .footer-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-brand {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .footer-disclaimer {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      margin-top: 1rem;
+      line-height: 1.4;
+    }
+
+    /* Mobile Responsive Adjustments */
+    @media (max-width: 900px) {
+      .main-layout {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 2rem;
+      }
+      .nav-links {
+        display: none; /* Can be toggled with mobile hamburger menu */
+      }
+    }
+  </style>
+</head>
+<body data-theme="light">
+
+  <!-- ==========================================================================
+       HEADER / NAV BAR
+       ========================================================================== -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <div class="logo-emblem"></div>
+        <span>Miraculous Network</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#">Latest News</a></li>
+        <li><a href="#">Episodes</a></li>
+        <li><a href="#">Kwamis & Lore</a></li>
+        <li><a href="#">Theories</a></li>
+      </ul>
+
+      <div class="controls-group">
+        <!-- Theme Toggle (Ladybug / Cat Noir) -->
+        <button class="toggle-btn" id="themeToggle" title="Toggle Day/Night Mode">
+          <span id="themeIcon">☀️</span> <span id="themeLabel">Paris Day</span>
+        </button>
+
+        <!-- Spoiler Shield Toggle -->
+        <button class="toggle-btn" id="spoilerToggle" style="border-color: #8b5cf6;">
+          <span>🛡️ Spoilers:</span> <span id="spoilerLabel" style="color: #8b5cf6; font-weight:700;">HIDDEN</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO FEATURED NEWS
+       ========================================================================== -->
+  <section class="hero-container">
+    <div class="hero-card">
+      <div class="hero-content">
+        <div class="badge-group">
+          <span class="badge badge-primary">Breaking News</span>
+          <span class="badge badge-gold">Season 6</span>
+        </div>
+        <h1 class="hero-title">Finale Episode Of Miraculous Season 6 Is Premiered!</h1>
+        <p class="hero-desc">Click the Link Below to watch the episode NOW!</p>
+        <a href="https://t.me/miraculousseason5ep26/3" class="btn btn-primary">Watch Episode S06E26 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       COUNTDOWN BAR
+       ========================================================================== -->
+  <div class="countdown-bar">
+    <div class="countdown-info">
+      <span style="font-size: 1.75rem;">📺</span>
+      <div>
+        <h4 style="font-size: 1rem; font-weight: 700;">Season 7 Episode 1</h4>
+        <p style="font-size: 0.8rem; opacity: 0.8;">"Airing On 20th November 2026"</p>
+      </div>
+    </div>
+    <div class="countdown-timer" id="countdown">
+      <div class="time-block"><div class="time-num" id="days">00</div><div class="time-label">Days</div></div>
+      <div class="time-block"><div class="time-num" id="hours">00</div><div class="time-label">Hours</div></div>
+      <div class="time-block"><div class="time-num" id="mins">00</div><div class="time-label">Mins</div></div>
+      <div class="time-block"><div class="time-num" id="secs">00</div><div class="time-label">Secs</div></div>
+    </div>
+  <script>
+// This wrapper ensures the code waits until all HTML elements are ready
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // Set the destination date and time (12:00 AM / Midnight)
+    const targetDate = new Date("Nov 20, 2026 00:00:00").getTime();
+
+    // Run the timer immediately on load so it doesn't stay at "00" for the first second
+    updateTimer(); 
+    
+    // Update the countdown clock every single second
+    const timerInterval = setInterval(updateTimer, 1000);
+
+    function updateTimer() {
+        // Get today's local date and time
+        const now = new Date().getTime();
+
+        // Find the time span distance between now and the target date
+        const distance = targetDate - now;
+
+        // Time calculations for days, hours, minutes, and seconds
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Fetch the elements securely
+        const daysEl = document.getElementById("days");
+        const hoursEl = document.getElementById("hours");
+        const minsEl = document.getElementById("mins");
+        const secsEl = document.getElementById("secs");
+
+        // Only update if the elements are found on the page
+        if (daysEl && hoursEl && minsEl && secsEl) {
+            daysEl.innerText = String(days).padStart(2, '0');
+            hoursEl.innerText = String(hours).padStart(2, '0');
+            minsEl.innerText = String(minutes).padStart(2, '0');
+            secsEl.innerText = String(seconds).padStart(2, '0');
+        }
+
+        // If the countdown finish line is reached, clear the interval
+        if (distance < 0) {
+            clearInterval(timerInterval);
+            const countdownEl = document.getElementById("countdown");
+            if (countdownEl) {
+                countdownEl.innerText = "THE EVENT HAS STARTED!";
+            }
+        }
+    }
+});
+</script>
+
+  </div>
+
+  <!-- ==========================================================================
+       MAIN LAYOUT: NEWS FEED + SIDEBAR
+       ========================================================================== -->
+  <main class="main-layout spoiler-protected" id="mainContent">
+    
+    <!-- MAIN NEWS FEED (Left Column) -->
+    <section>
+      <div class="section-header">
+        <h2 class="section-title">Latest Headlines</h2>
+      </div>
+
+      <div class="cards-grid">
+        <!-- Card 1 -->
+        <article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge badge-spoiler" style="position: absolute; top: 10px; left: 10px; z-index: 2;">Season 6</span>
+            <img src="Season 6.jpg" auto=format&fit=crop&w=600&q=80" alt="Eiffel Tower Paris" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span>Aug 8, 2026</span> • <span>3 min read</span>
+            </div>
+            <h3 class="card-title">Season 6 Finally ended with total of 26 Episodes</h3>
+            <p class="card-excerpt">Final Episode of Season 6 named Nemesis is finally released worldwide on 8th August 2026. </p>
+            <a href="read more.html" style="color: var(--primary); font-weight: 700; font-size: 0.85rem;">Read Story →</a>
+          </div>
+        </article>
+
+        <!-- Card 2 (Spoiler Content) -->
+        <article class="card">
+          <div class="card-img-wrapper">
+            <span class="badge badge-spoiler" style="position: absolute; top: 10px; left: 10px; z-index: 2;">Season 7 Leak</span>
+            <img src="Season 7.jpg" auto=format&fit=crop&w=600&q=80" alt="Mysterious butterfly" class="card-img spoiler-text">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span>Aug 7, 2026</span> • <span>5 min read</span>
+            </div>
+            <h3 class="card-title spoiler-text">Miraculous Season 7 Arriving in November 2026: The Ultimate Reveal Awaits!</h3>
+            <p class="card-excerpt spoiler-text">The wait is almost over. As Marinette prepares to confess the unthinkable to Adrien, dark secrets and unexpected alliances threaten to tear their world apart. Prepare for the most dramatic chapter yet.</p>
+            <a href="read more 2.html" style="color: var(--primary); font-weight: 700; font-size: 0.85rem;">Read Story →</a>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="card">
+          <div class="card-img-wrapper">
+            <img src="chibi.png" auto=format&fit=crop&w=600&q=80" alt="Action figure" class="card-img">
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span>Aug 5, 2026</span> • <span>2 min read</span>
+            </div>
+            <h3 class="card-title">Watch Miraculous All Chibi Episodes NOW!</h3>
+            <p class="card-excerpt">Click the Link Below to watch all the episodes of Miraculous Chibi For Free.</p>
+            <a href="https://www.youtube.com/show/VLPLfkxw3Qnj-T8?season=1&sbp=CgExGgAqC0lIR2RvUEZsWTlVQAFKDVBTYXFXMER4a05QQVE%253D" style="color: var(--primary); font-weight: 700; font-size: 0.85rem;">Watch Now →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SIDEBAR (Right Column) -->
+    <aside class="sidebar">
+      
+      <!-- Kwami of the Week Widget -->
+      <div class="widget kwami-card">
+        <span class="badge badge-gold" style="margin-bottom: 0.5rem; display: inline-block;">Kwami of the Week</span>
+        <div class="kwami-avatar">
+          <div style="font-size: 3.5rem; line-height: 80px;">🐞</div>
+        </div>
+        <h3 style="font-size: 1.25rem; margin-bottom: 0.25rem;">Tikki</h3>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Kwami of Creation</p>
+        <p style="font-size: 0.85rem; font-style: italic;">"Spots On!" — Loves baked sugar cookies and granting lucky charms.</p>
+      </div>
+
+      <!-- Quick Fan Poll -->
+      <div class="widget">
+        <h3 class="section-title" style="font-size: 1.1rem; margin-bottom: 1rem;">Community Poll</h3>
+        <p style="font-size: 0.9rem; font-weight: 600; margin-bottom: 1rem;">Which Kwami power would you choose in real life?</p>
+        
+        <form style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.85rem;">
+          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+            <input type="radio" name="poll" value="tikki"> Tikki (Lucky Charm / Creation)
+          </label>
+          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+            <input type="radio" name="poll" value="plagg"> Plagg (Cataclysm / Destruction)
+          </label>
+          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+            <input type="radio" name="poll" value="trixx"> Trixx (Mirage / Illusion)
+          </label>
+          <button type="button" class="btn btn-primary" style="margin-top: 0.75rem; padding: 0.5rem 1rem; font-size: 0.8rem; justify-content: center;">Submit Vote</button>
+        </form>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div>
+        <div class="footer-brand">🐞 MIRACULOUS NETWORK</div>
+        <p style="font-size: 0.85rem; opacity: 0.8;">The premier fan news hub for everything Miraculous: Tales of Ladybug & Cat Noir.</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 0.75rem; font-size: 0.95rem;">Quick Links</h4>
+        <p style="font-size: 0.85rem; opacity: 0.8; line-height: 1.8;">
+          <a href="#">Episode Guide</a><br>
+          <a href="#">Character Database</a><br>
+          <a href="#">Merchandise Tracker</a>
+        </p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 0.75rem; font-size: 0.95rem;">Community</h4>
+        <p style="font-size: 0.85rem; opacity: 0.8; line-height: 1.8;">
+          <a href="#">Discord Server</a><br>
+          <a href="#">Theory Submissions</a><br>
+          <a href="#">Fan Art Gallery</a>
+        </p>
+      </div>
+    </div>
+    <div style="text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+      <p class="footer-disclaimer">Miraculous™ is a trademark of ZAG Animation / Method Animation. This website is an unofficial fan publication not affiliated with or endorsed by ZAG or ON Kids & Family.</p>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       JAVASCRIPT LOGIC
+       ========================================================================== -->
+  <script>
+    // 1. Day / Night Theme Switcher (Ladybug Red vs Cat Noir Green)
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeLabel = document.getElementById('themeLabel');
+
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = document.body.getAttribute('data-theme');
+      if (currentTheme === 'light') {
+        document.body.setAttribute('data-theme', 'dark');
+        themeIcon.textContent = '🌙';
+        themeLabel.textContent = 'Paris Night';
+      } else {
+        document.body.setAttribute('data-theme', 'light');
+        themeIcon.textContent = '☀️';
+        themeLabel.textContent = 'Paris Day';
+      }
+    });
+
+    // 2. Spoiler Shield Toggle Logic
+    const spoilerToggleBtn = document.getElementById('spoilerToggle');
+    const spoilerLabel = document.getElementById('spoilerLabel');
+    const mainContent = document.getElementById('mainContent');
+    let spoilersHidden = true;
+
+    spoilerToggleBtn.addEventListener('click', () => {
+      spoilersHidden = !spoilersHidden;
+      if (spoilersHidden) {
+        mainContent.classList.add('spoiler-protected');
+        spoilerLabel.textContent = 'HIDDEN';
+        spoilerLabel.style.color = '#8b5cf6';
+      } else {
+        mainContent.classList.remove('spoiler-protected');
+        spoilerLabel.textContent = 'REVEALED';
+        spoilerLabel.style.color = '#ef4444';
+      }
+    });
+
+    // 3. Dynamic Episode Countdown Clock
+    function updateCountdown() {
+      // Dummy target date: 3 days, 14 hours from now
+      const targetDate = new Date(Date.now() + (3 * 24 * 60 * 60 * 1000) + (14 * 60 * 60 * 1000)).getTime();
+      
+      setInterval(() => {
+        const now = new Date().getTime();
+        const difference = targetDate - now;
+
+        const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerText = String(d).padStart(2, '0');
+        document.getElementById('hours').innerText = String(h).padStart(2, '0');
+        document.getElementById('mins').innerText = String(m).padStart(2, '0');
+        document.getElementById('secs').innerText = String(s).padStart(2, '0');
+      }, 1000);
+    }
+
+    updateCountdown();
+  </script>
+</body>
+</html>
