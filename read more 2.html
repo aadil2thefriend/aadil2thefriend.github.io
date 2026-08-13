@@ -271,7 +271,7 @@
       color: var(--text-main);
     }
 
-    .image-container {
+.image-container {
   width: 100%;       /* Takes full width of its parent container */
   max-width: 600px;  /* Prevents the image from becoming pixelated on massive screens */
   margin: 0 auto;    /* Centers the image on the webpage */
@@ -508,6 +508,43 @@
         display: none;
       }
     }
+
+/* ==========================================================================
+   GOOGLE TRANSLATE BANNER OVERRIDE
+   ========================================================================== */
+/* Hide all Google Translate banner frames, wrapper elements, and tooltips */
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame,
+iframe.skiptranslate {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  opacity: 0 !important;
+}
+
+/* Reset forced page offsets on HTML and Body */
+html {
+  top: 0px !important;
+}
+
+body {
+  top: 0px !important;
+  position: static !important;
+}
+
+/* Hide hover tooltips and text highlighting */
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+#goog-gt-tt, 
+.goog-te-balloon-frame {
+  display: none !important;
+}
+
   </style>
 </head>
 <body data-theme="light">
@@ -594,12 +631,12 @@
         <p>According to Gloob during Miraculous Day, Season 7 will show and confirm some new things which are -
            <br>– Confirmation that Lila is Tomoe’s daughter and Kagami is her sister<br>
            <br>– A Brazilian villain will debut<br>
-           <br>– Adrien will have a new haircut 
-          (Below Image is from Gloob, They said one of this would look closely to the New haircut for Adrien) <br>
+           <br>– Adrien will have a new haircut
+(Below Image is from Gloob, They said one of this would look closely to the New haircut for Adrien) <br>
  <!-- Featured Image -->
       <div class="image-container">
   <img src="Adrien hairstyles.png" alt="Adrien Agreste Haircuts" class="full-responsive-img">
-</div>     
+</div>
            <br>– Ladybug will return to Rio de Janeiro<br>
            <br>– Nathalie’s father will appear for the first time</p>
 
@@ -656,6 +693,8 @@
           <button class="share-btn">🐦 Twitter / X</button>
         </div>
       </div>
+
+<div id="langSwitcherContainer"></div>
 
       <!-- Related News Widget -->
       <div class="widget">
@@ -814,6 +853,9 @@
       }
     });
   </script>
+
+<script src="translator.js"></script>
+
 </body>
 </html>
 
