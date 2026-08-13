@@ -421,6 +421,34 @@
       gap: 2rem;
     }
 
+/* Language Switcher Styling */
+    .lang-switcher {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: #f0f4f8;
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: 1px solid #d0dbe5;
+    }
+
+    .lang-switcher label {
+      font-size: 13px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .lang-switcher select {
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      cursor: pointer;
+      background-color: #ffffff;
+      color: #222;
+      font-weight: 600;
+    }
+
     .widget {
       background-color: var(--bg-card);
       border-radius: var(--radius);
@@ -495,6 +523,43 @@
         display: none; /* Can be toggled with mobile hamburger menu */
       }
     }
+
+/* ==========================================================================
+   GOOGLE TRANSLATE BANNER OVERRIDE
+   ========================================================================== */
+/* Hide all Google Translate banner frames, wrapper elements, and tooltips */
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame,
+iframe.skiptranslate {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  opacity: 0 !important;
+}
+
+/* Reset forced page offsets on HTML and Body */
+html {
+  top: 0px !important;
+}
+
+body {
+  top: 0px !important;
+  position: static !important;
+}
+
+/* Hide hover tooltips and text highlighting */
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+#goog-gt-tt, 
+.goog-te-balloon-frame {
+  display: none !important;
+}
+
   </style>
 </head>
 <body data-theme="light">
@@ -558,12 +623,15 @@
         <p style="font-size: 0.8rem; opacity: 0.8;">"Airing On 20th November 2026"</p>
       </div>
     </div>
-    <div class="countdown-timer" id="countdown">
+
+<div class="countdown-timer" id="countdown">
+
       <div class="time-block"><div class="time-num" id="days">00</div><div class="time-label">Days</div></div>
       <div class="time-block"><div class="time-num" id="hours">00</div><div class="time-label">Hours</div></div>
       <div class="time-block"><div class="time-num" id="mins">00</div><div class="time-label">Mins</div></div>
       <div class="time-block"><div class="time-num" id="secs">00</div><div class="time-label">Secs</div></div>
     </div>
+    
   <script>
 // This wrapper ensures the code waits until all HTML elements are ready
 document.addEventListener("DOMContentLoaded", function() {
@@ -681,6 +749,34 @@ document.addEventListener("DOMContentLoaded", function() {
 
     <!-- SIDEBAR (Right Column) -->
     <aside class="sidebar">
+
+<div id="langSwitcherContainer"></div>
+
+    <!-- Language Selector Dropdown (Protected from Translation) -->
+<div class="lang-switcher notranslate" translate="no">
+  <label for="langSelect" id="lblLanguage">Language / Bhasha:</label>
+  <select id="langSelect" class="notranslate" translate="no">
+    <option value="en">🇬🇧 ENGLISH</option>
+    <option value="pt">🇧🇷 BRASIL</option>
+    <option value="cs">🇨🇿 CZECH</option>
+    <option value="de">🇩🇪 DEUTSCH</option>
+    <option value="es">🇪🇸 ESPAÑOL</option>
+    <option value="fr">🇫🇷 FRANÇAIS</option>
+    <option value="el">🇬🇷 ΕΛΛΗΝΙΚΑ</option>
+    <option value="it">🇮🇹 ITALIANO</option>
+    <option value="es">🇲🇽 LATINO</option>
+    <option value="nl">🇳🇱 NEDERLANDS</option>
+    <option value="pl">🇵🇱 POLSKI</option>
+    <option value="pt">🇵🇹 PORTUGAL</option>
+    <option value="ru">🇷🇺 РУССКИЙ</option>
+    <option value="ro">🇷🇴 ROMÂNĂ</option>
+    <option value="sr">🇷🇸 SRPSKI</option>
+    <option value="tr">🇹🇷 TÜRKÇE</option>
+    <option value="ko">🇰🇷 한국어</option>
+    <option value="ja">🇯🇵 日本語</option>
+    <option value="hi">🇮🇳 HINDI / हिंदी</option>
+  </select>
+</div>
       
       <!-- Kwami of the Week Widget -->
       <div class="widget kwami-card">
@@ -811,5 +907,56 @@ document.addEventListener("DOMContentLoaded", function() {
 
     updateCountdown();
   </script>
+
+<!-- Hidden Google Translate Element -->
+<div id="google_translate_element" style="display:none;"></div>
+
+<!-- Google Translate API Script -->
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      autoDisplay: false
+    }, 'google_translate_element');
+  }
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- Script to Connect Custom Dropdown to Google Translate Engine -->
+<script>
+  document.getElementById('langSelect').addEventListener('change', function () {
+    const selectedLang = this.value;
+
+    // Set Google Translate cookie
+    document.cookie = "googtrans=/en/" + selectedLang + "; path=/";
+    document.cookie = "googtrans=/en/" + selectedLang + "; domain=" + window.location.hostname + "; path=/";
+
+    // Trigger internal Google Translate selector
+    const googleCombo = document.querySelector('.goog-te-combo');
+    if (googleCombo) {
+      googleCombo.value = selectedLang;
+      googleCombo.dispatchEvent(new Event('change'));
+    } else {
+      window.location.reload();
+    }
+  });
+
+// Monitor and instantly reset any inline top style applied by Google Translate
+const bodyObserver = new MutationObserver(() => {
+  if (document.body.style.top && document.body.style.top !== '0px') {
+    document.body.style.top = '0px';
+  }
+});
+
+// Start observing the body tag for style changes
+bodyObserver.observe(document.body, { 
+  attributes: true, 
+  attributeFilter: ['style'] 
+});
+
+</script>
+
+<script src="translator.js"></script>
+
 </body>
 </html>
