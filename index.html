@@ -252,52 +252,201 @@
     /* ==========================================================================
        4. COUNTDOWN BAR
        ========================================================================== */
-    .countdown-bar {
-      background: var(--secondary);
-      color: #ffffff;
-      border-radius: var(--radius);
-      padding: 1.25rem 2rem;
-      margin: 2rem auto;
-      max-width: 1280px;
-      display: flex;
-      align-items: center;
+    /* Base Container Layout */
+  .mn-countdown-bar {
+    width: 100%;
+    max-width: 1100px;
+    margin: 20px auto;
+    box-sizing: border-box;
+    border-radius: var(--radius, 16px);
+    padding: 16px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    box-shadow: var(--shadow);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* -----------------------------------------------------------------
+     LIGHT MODE: Ladybug Theme (Red background + Black polka dots)
+     ----------------------------------------------------------------- */
+  :root:not([data-theme="dark"]) .mn-countdown-bar {
+    background-color: #E60026 !important;
+    background-image: radial-gradient(#121212 22%, transparent 22%) !important;
+    background-size: 18px 18px !important;
+    border: 2px solid #121212;
+  }
+
+  :root:not([data-theme="dark"]) .mn-banner-title {
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 3px #000000;
+  }
+
+  :root:not([data-theme="dark"]) .mn-banner-subtitle {
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 3px #000000;
+    font-weight: 600;
+  }
+
+  :root:not([data-theme="dark"]) .mn-icon-box {
+    background-color: #121212;
+    border: 2px solid #00FF33;
+    box-shadow: 0 0 10px rgba(0, 255, 51, 0.5);
+  }
+
+  :root:not([data-theme="dark"]) .mn-svg-bg {
+    fill: #E60026;
+  }
+
+  :root:not([data-theme="dark"]) .mn-time-card {
+    background-color: #121212;
+    border: 2px solid #00FF33;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+
+  :root:not([data-theme="dark"]) .mn-time-num {
+    color: #00FF33;
+    text-shadow: 0 0 8px rgba(0, 255, 51, 0.7);
+  }
+
+  :root:not([data-theme="dark"]) .mn-time-label {
+    color: #d1d5db;
+  }
+
+  /* ==========================================================================
+   CAT NOIR DARK MODE (Black Background + Neon Green Spots)
+   ========================================================================== */
+[data-theme="dark"] .mn-countdown-bar {
+  background-color: #000000 !important; /* Pure Black Background */
+  background-image: radial-gradient(#00FF33 22%, transparent 22%) !important; /* Neon Green Spots */
+  background-size: 18px 18px !important;
+  border: 2px solid #00FF33 !important;
+  box-shadow: 0 0 20px rgba(0, 255, 51, 0.25) !important;
+}
+
+[data-theme="dark"] .mn-banner-title {
+  color: #ffffff !important;
+  text-shadow: 0 2px 6px #000000, 0 0 8px #000000, 0 0 3px #000000 !important;
+}
+
+[data-theme="dark"] .mn-banner-subtitle {
+  color: #ffffff !important;
+  text-shadow: 0 2px 5px #000000, 0 0 6px #000000 !important;
+  font-weight: 600 !important;
+}
+
+[data-theme="dark"] .mn-icon-box {
+  background-color: #000000 !important; /* Changed to Pure Black */
+  border: 2px solid #E60026 !important;
+  box-shadow: 0 0 12px rgba(230, 0, 38, 0.7) !important;
+}
+
+[data-theme="dark"] .mn-svg-bg {
+  fill: #E60026 !important;
+}
+
+[data-theme="dark"] .mn-time-card {
+  background-color: #000000 !important; /* Changed to Pure Black */
+  border: 2px solid #E60026 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9) !important;
+}
+
+[data-theme="dark"] .mn-time-num {
+  color: #E60026 !important;
+  text-shadow: 0 0 10px rgba(230, 0, 38, 0.9) !important;
+}
+
+[data-theme="dark"] .mn-time-label {
+  color: #e5e7eb !important;
+}
+
+  /* Structural Typography & Layout */
+  .mn-banner-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .mn-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+
+  .mn-banner-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mn-banner-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+  }
+
+  .mn-banner-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem;
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  .mn-countdown-grid {
+    display: flex;
+    gap: 10px;
+  }
+
+  .mn-time-card {
+    border-radius: 10px;
+    width: 66px;
+    padding: 8px 0;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .mn-time-num {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.45rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .mn-time-label {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 5px;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 650px) {
+    .mn-countdown-bar {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 16px;
+    }
+    .mn-countdown-grid {
+      width: 100%;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      border-left: 6px solid var(--primary);
     }
-
-    .countdown-info {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+    .mn-time-card {
+      flex: 1;
+      width: auto;
     }
-
-    .countdown-timer {
-      display: flex;
-      gap: 1rem;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .time-block {
-      text-align: center;
-      background: rgba(255,255,255,0.1);
-      padding: 0.5rem 0.85rem;
-      border-radius: 8px;
-      min-width: 65px;
-    }
-
-    .time-num {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--primary);
-    }
-
-    .time-label {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      opacity: 0.8;
-    }
+  }
 
     /* ==========================================================================
        5. MAIN CONTENT LAYOUT (FEED + SIDEBAR)
@@ -615,73 +764,76 @@ body {
   <!-- ==========================================================================
        COUNTDOWN BAR
        ========================================================================== -->
-  <div class="countdown-bar">
-    <div class="countdown-info">
-      <span style="font-size: 1.75rem;">📺</span>
-      <div>
-        <h4 style="font-size: 1rem; font-weight: 700;">Season 7 Episode 1</h4>
-        <p style="font-size: 0.8rem; opacity: 0.8;">"Airing On 20th November 2026"</p>
-      </div>
+  <div class="mn-countdown-bar">
+  <div class="mn-banner-info">
+    <div class="mn-icon-box">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" fill="#e60026"/>
+        <path d="M12 2V22" stroke="#121214" stroke-width="1.5"/>
+        <circle cx="8" cy="8" r="1.5" fill="#121214"/>
+        <circle cx="16" cy="8" r="1.5" fill="#121214"/>
+        <circle cx="7" cy="14" r="1.5" fill="#121214"/>
+        <circle cx="17" cy="14" r="1.5" fill="#121214"/>
+        <circle cx="12" cy="18" r="1.5" fill="#121214"/>
+      </svg>
     </div>
-
-<div class="countdown-timer" id="countdown">
-
-       <div class="time-block"><div class="time-num" id="days">00</div><div class="time-label">Days</div></div>
-      <div class="time-block"><div class="time-num" id="hours">00</div><div class="time-label">Hours</div></div>
-      <div class="time-block"><div class="time-num" id="mins">00</div><div class="time-label">Mins</div></div>
-      <div class="time-block"><div class="time-num" id="secs">00</div><div class="time-label">Secs</div></div>
+    <div class="mn-banner-text">
+      <h3 class="mn-banner-title">Season 7 Episode 1</h3>
+      <span class="mn-banner-subtitle">"Airing On 21st November at 12:00 AM"</span>
     </div>
-    
+  </div>
+
+  <div class="mn-countdown-grid" id="mn-countdown-timer">
+    <div class="mn-time-card">
+      <span class="mn-time-num" id="mn-days">00</span>
+      <span class="mn-time-label">DAYS</span>
+    </div>
+    <div class="mn-time-card">
+      <span class="mn-time-num" id="mn-hours">00</span>
+      <span class="mn-time-label">HOURS</span>
+    </div>
+    <div class="mn-time-card">
+      <span class="mn-time-num" id="mn-mins">00</span>
+      <span class="mn-time-label">MINS</span>
+    </div>
+    <div class="mn-time-card">
+      <span class="mn-time-num" id="mn-secs">00</span>
+      <span class="mn-time-label">SECS</span>
+    </div>
+  </div>
+</div>
+
   <script>
-// This wrapper ensures the code waits until all HTML elements are ready
-document.addEventListener("DOMContentLoaded", function() {
-    
-    // Set the destination date and time (12:00 AM / Midnight)
-    const targetDate = new Date("Nov 20, 2026 00:00:00").getTime();
-
-    // Run the timer immediately on load so it doesn't stay at "00" for the first second
-    updateTimer(); 
-    
-    // Update the countdown clock every single second
-    const timerInterval = setInterval(updateTimer, 1000);
+  (function() {
+    // Explicit Local Target Date: November 21, 2026 00:00:00
+    const targetDate = new Date(2026, 10, 21, 0, 0, 0).getTime();
 
     function updateTimer() {
-        // Get today's local date and time
-        const now = new Date().getTime();
+      const now = new Date().getTime();
+      const diff = targetDate - now;
 
-        // Find the time span distance between now and the target date
-        const distance = targetDate - now;
+      if (diff <= 0) {
+        document.getElementById("mn-days").innerText = "00";
+        document.getElementById("mn-hours").innerText = "00";
+        document.getElementById("mn-mins").innerText = "00";
+        document.getElementById("mn-secs").innerText = "00";
+        return;
+      }
 
-        // Time calculations for days, hours, minutes, and seconds
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
 
-        // Fetch the elements securely
-        const daysEl = document.getElementById("days");
-        const hoursEl = document.getElementById("hours");
-        const minsEl = document.getElementById("mins");
-        const secsEl = document.getElementById("secs");
-
-        // Only update if the elements are found on the page
-        if (daysEl && hoursEl && minsEl && secsEl) {
-            daysEl.innerText = String(days).padStart(2, '0');
-            hoursEl.innerText = String(hours).padStart(2, '0');
-            minsEl.innerText = String(minutes).padStart(2, '0');
-            secsEl.innerText = String(seconds).padStart(2, '0');
-        }
-
-        // If the countdown finish line is reached, clear the interval
-        if (distance < 0) {
-            clearInterval(timerInterval);
-            const countdownEl = document.getElementById("countdown");
-            if (countdownEl) {
-                countdownEl.innerText = "THE EVENT HAS STARTED!";
-            }
-        }
+      document.getElementById("mn-days").innerText = days < 10 ? '0' + days : days;
+      document.getElementById("mn-hours").innerText = hours < 10 ? '0' + hours : hours;
+      document.getElementById("mn-mins").innerText = mins < 10 ? '0' + mins : mins;
+      document.getElementById("mn-secs").innerText = secs < 10 ? '0' + secs : secs;
     }
-});
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+  })();
 </script>
 
   </div>
