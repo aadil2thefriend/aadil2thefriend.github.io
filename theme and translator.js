@@ -1,13 +1,20 @@
 // =========================================================================
-// 1. INSTANT THEME LOAD (Runs before page renders to prevent screen flash)
+// 1. INSTANT THEME INITIALIZATION (Runs immediately to prevent flashing)
 // =========================================================================
-(function () {
-  const savedTheme = localStorage.getItem('siteTheme') || 'light';
-  // Sets <html data-theme="dark"> or <html data-theme="light">
-  document.documentElement.setAttribute('data-theme', savedTheme);
-})();
+function applyTheme(theme) {
+  // Apply to <html> so CSS :root and [data-theme="dark"] selectors work
+  document.documentElement.setAttribute('data-theme', theme);
+  // Apply to <body> as a fallback for body selectors
+  if (document.body) {
+    document.body.setAttribute('data-theme', theme);
+  }
+}
 
-// Helper to set Google Translate Cookies across all subpages
+// Instantly apply theme from localStorage before DOM renders
+const savedTheme = localStorage.getItem('siteTheme') || 'light';
+applyTheme(savedTheme);
+
+// Helper function to set Google Translate cookies across all paths
 function setTranslateCookie(lang) {
   const domain = window.location.hostname;
   document.cookie = "googtrans=/en/" + lang + "; path=/";
@@ -20,13 +27,10 @@ function setTranslateCookie(lang) {
 // 2. DOM EVENT LISTENERS (Runs when page finishes loading)
 // =========================================================================
 document.addEventListener('DOMContentLoaded', () => {
-  const savedTheme = localStorage.getItem('siteTheme') || 'light';
-  
-  // Ensure both <html> and <body> get the attribute so [data-theme="dark"] matches
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  if (document.body) {
-    document.body.setAttribute('data-theme', savedTheme);
-  }
+
+  // Re-verify theme state once <body> is present
+  const currentSavedTheme = localStorage.getItem('siteTheme') || 'light';
+  applyTheme(currentSavedTheme);
 
   // --- A. THEME TOGGLE LOGIC ---
   const themeToggleBtn = document.getElementById('themeToggle');
@@ -38,27 +42,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (themeLabel) themeLabel.textContent = theme === 'dark' ? 'Paris Night' : 'Paris Day';
   }
 
-  updateThemeUI(savedTheme);
+  // Update button icons/text on page load
+  updateThemeUI(currentSavedTheme);
 
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {
-      // Check current theme
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      const activeTheme = document.documentElement.getAttribute('data-theme');
+      // If dark, switch to light. Otherwise (if light or null), switch to dark
+      const newTheme = activeTheme === 'dark' ? 'light' : 'dark';
 
-      // 1. Apply to <html> and <body> so [data-theme="dark"] triggers in CSS
-      document.documentElement.setAttribute('data-theme', newTheme);
-      document.body.setAttribute('data-theme', newTheme);
-
-      // 2. Save preference to browser storage
+      applyTheme(newTheme);
       localStorage.setItem('siteTheme', newTheme);
-
-      // 3. Update button icon and label
       updateThemeUI(newTheme);
     });
   }
 
-  // --- B. LANGUAGE SELECTOR LOGIC ---
+  // --- B. LANGUAGE TRANSLATOR LOGIC ---
   const langSelect = document.getElementById('langSelect');
   const savedLang = localStorage.getItem('siteLanguage');
 
@@ -75,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('siteLanguage', selectedLang);
       setTranslateCookie(selectedLang);
 
+      // Trigger hidden Google Translate dropdown engine
       const googleCombo = document.querySelector('.goog-te-combo');
       if (googleCombo) {
         googleCombo.value = selectedLang;
@@ -86,12 +86,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Suppress Google Translate layout shift
+// =========================================================================
+// 3. GOOGLE TRANSLATE BANNER SHIFT FIX
+// =========================================================================
 const bodyObserver = new MutationObserver(() => {
   if (document.body && document.body.style.top && document.body.style.top !== '0px') {
     document.body.style.top = '0px';
   }
 });
+
 if (document.body) {
   bodyObserver.observe(document.body, { attributes: true, attributeFilter: ['style'] });
 }
