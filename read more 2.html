@@ -271,6 +271,18 @@
       color: var(--text-main);
     }
 
+    .image-container {
+  width: 100%;       /* Takes full width of its parent container */
+  max-width: 600px;  /* Prevents the image from becoming pixelated on massive screens */
+  margin: 0 auto;    /* Centers the image on the webpage */
+}
+
+.full-responsive-img {
+  width: 100%;       /* Forces image to scale to container width */
+  height: auto;      /* Keeps the original 1:1 aspect ratio perfectly */
+  display: block;    /* Removes unexpected bottom spacing issues */
+}
+
     .kwami-quote-box {
       background: linear-gradient(135deg, rgba(230, 0, 38, 0.08) 0%, rgba(255, 215, 0, 0.08) 100%);
       border-left: 5px solid var(--primary);
@@ -584,8 +596,9 @@
            <br>– A Brazilian villain will debut<br>
            <br>– Adrien will have a new haircut<br>
  <!-- Featured Image -->
-      <img src="Adrien hairstyles.png" alt="Eiffel Tower Paris render" class="article-hero-img">
-          
+      <div class="image-container">
+  <img src="image_t_TbCe.png" alt="Adrien Agreste Haircuts" class="full-responsive-img">
+</div>     
            <br>– Ladybug will return to Rio de Janeiro<br>
            <br>– Nathalie’s father will appear for the first time</p>
 
