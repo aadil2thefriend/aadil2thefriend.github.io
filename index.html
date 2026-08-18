@@ -168,7 +168,7 @@
     }
 
     /* ==========================================================================
-       3. HERO SECTION
+       3. HERO CAROUSEL SECTION (SLIDING NEWS BANNER)
        ========================================================================== */
     .hero-container {
       max-width: 1280px;
@@ -176,16 +176,39 @@
       padding: 0 1.5rem;
     }
 
-    .hero-card {
+    .hero-carousel {
       position: relative;
       border-radius: var(--radius);
       overflow: hidden;
       min-height: 480px;
+      box-shadow: var(--shadow);
+    }
+
+    .carousel-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
       display: flex;
       align-items: flex-end;
-      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%), 
-                  url('Nemesis.jpg') center/cover no-repeat;
-      box-shadow: var(--shadow);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .carousel-slide.active {
+      opacity: 1;
+      visibility: visible;
+      z-index: 1;
+    }
+
+    .carousel-slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.88) 100%);
+      z-index: 1;
     }
 
     .hero-content {
@@ -193,6 +216,7 @@
       color: #ffffff;
       max-width: 800px;
       z-index: 2;
+      position: relative;
     }
 
     .badge-group {
@@ -249,10 +273,65 @@
       box-shadow: 0 6px 20px rgba(230, 0, 38, 0.4);
     }
 
+    /* Carousel Arrow Controls */
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.4);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      backdrop-filter: blur(4px);
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .carousel-arrow:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .carousel-arrow.prev { left: 1.25rem; }
+    .carousel-arrow.next { right: 1.25rem; }
+
+    /* Carousel Dot Indicators */
+    .carousel-dots {
+      position: absolute;
+      bottom: 1.25rem;
+      right: 2rem;
+      z-index: 10;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .carousel-dot.active {
+      background: var(--primary);
+      width: 26px;
+      border-radius: 12px;
+    }
+
     /* ==========================================================================
        4. COUNTDOWN BAR
        ========================================================================== */
-    /* Base Container Layout */
   .mn-countdown-bar {
     width: 100%;
     max-width: 1100px;
@@ -268,9 +347,6 @@
     transition: background 0.3s ease, border-color 0.3s ease;
   }
 
-  /* -----------------------------------------------------------------
-     LIGHT MODE: Ladybug Theme (Red background + Black polka dots)
-     ----------------------------------------------------------------- */
   :root:not([data-theme="dark"]) .mn-countdown-bar {
     background-color: #E60026 !important;
     background-image: radial-gradient(#121212 22%, transparent 22%) !important;
@@ -314,54 +390,50 @@
     color: #d1d5db;
   }
 
-  /* ==========================================================================
-   CAT NOIR DARK MODE (Black Background + Neon Green Spots)
-   ========================================================================== */
-[data-theme="dark"] .mn-countdown-bar {
-  background-color: #000000 !important; /* Pure Black Background */
-  background-image: radial-gradient(#00FF33 22%, transparent 22%) !important; /* Neon Green Spots */
-  background-size: 18px 18px !important;
-  border: 2px solid #00FF33 !important;
-  box-shadow: 0 0 20px rgba(0, 255, 51, 0.25) !important;
-}
+  [data-theme="dark"] .mn-countdown-bar {
+    background-color: #000000 !important;
+    background-image: radial-gradient(#00FF33 22%, transparent 22%) !important;
+    background-size: 18px 18px !important;
+    border: 2px solid #00FF33 !important;
+    box-shadow: 0 0 20px rgba(0, 255, 51, 0.25) !important;
+  }
 
-[data-theme="dark"] .mn-banner-title {
-  color: #ffffff !important;
-  text-shadow: 0 2px 6px #000000, 0 0 8px #000000, 0 0 3px #000000 !important;
-}
+  [data-theme="dark"] .mn-banner-title {
+    color: #ffffff !important;
+    text-shadow: 0 2px 6px #000000, 0 0 8px #000000, 0 0 3px #000000 !important;
+  }
 
-[data-theme="dark"] .mn-banner-subtitle {
-  color: #ffffff !important;
-  text-shadow: 0 2px 5px #000000, 0 0 6px #000000 !important;
-  font-weight: 600 !important;
-}
+  [data-theme="dark"] .mn-banner-subtitle {
+    color: #ffffff !important;
+    text-shadow: 0 2px 5px #000000, 0 0 6px #000000 !important;
+    font-weight: 600 !important;
+  }
 
-[data-theme="dark"] .mn-icon-box {
-  background-color: #000000 !important; /* Changed to Pure Black */
-  border: 2px solid #E60026 !important;
-  box-shadow: 0 0 12px rgba(230, 0, 38, 0.7) !important;
-}
+  [data-theme="dark"] .mn-icon-box {
+    background-color: #000000 !important;
+    border: 2px solid #E60026 !important;
+    box-shadow: 0 0 12px rgba(230, 0, 38, 0.7) !important;
+  }
 
-[data-theme="dark"] .mn-svg-bg {
-  fill: #E60026 !important;
-}
+  [data-theme="dark"] .mn-svg-bg {
+    fill: #E60026 !important;
+  }
 
-[data-theme="dark"] .mn-time-card {
-  background-color: #000000 !important; /* Changed to Pure Black */
-  border: 2px solid #E60026 !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9) !important;
-}
+  [data-theme="dark"] .mn-time-card {
+    background-color: #000000 !important;
+    border: 2px solid #E60026 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9) !important;
+  }
 
-[data-theme="dark"] .mn-time-num {
-  color: #E60026 !important;
-  text-shadow: 0 0 10px rgba(230, 0, 38, 0.9) !important;
-}
+  [data-theme="dark"] .mn-time-num {
+    color: #E60026 !important;
+    text-shadow: 0 0 10px rgba(230, 0, 38, 0.9) !important;
+  }
 
-[data-theme="dark"] .mn-time-label {
-  color: #e5e7eb !important;
-}
+  [data-theme="dark"] .mn-time-label {
+    color: #e5e7eb !important;
+  }
 
-  /* Structural Typography & Layout */
   .mn-banner-info {
     display: flex;
     align-items: center;
@@ -431,7 +503,6 @@
     margin-top: 5px;
   }
 
-  /* Responsive Adjustments */
   @media (max-width: 650px) {
     .mn-countdown-bar {
       flex-direction: column;
@@ -484,7 +555,6 @@
       background-color: var(--primary);
     }
 
-    /* Article Cards Grid */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -570,7 +640,6 @@
       gap: 2rem;
     }
 
-/* Language Switcher Styling */
     .lang-switcher {
       display: flex;
       flex-direction: column;
@@ -660,7 +729,6 @@
       line-height: 1.4;
     }
 
-    /* Mobile Responsive Adjustments */
     @media (max-width: 900px) {
       .main-layout {
         grid-template-columns: 1fr;
@@ -669,14 +737,11 @@
         font-size: 2rem;
       }
       .nav-links {
-        display: none; /* Can be toggled with mobile hamburger menu */
+        display: none;
       }
     }
 
-/* ==========================================================================
-   GOOGLE TRANSLATE BANNER OVERRIDE
-   ========================================================================== */
-/* Hide all Google Translate banner frames, wrapper elements, and tooltips */
+/* GOOGLE TRANSLATE BANNER OVERRIDE */
 .goog-te-banner-frame,
 .goog-te-banner-frame.skiptranslate,
 iframe.goog-te-banner-frame,
@@ -688,7 +753,6 @@ iframe.skiptranslate {
   opacity: 0 !important;
 }
 
-/* Reset forced page offsets on HTML and Body */
 html {
   top: 0px !important;
 }
@@ -698,7 +762,6 @@ body {
   position: static !important;
 }
 
-/* Hide hover tooltips and text highlighting */
 .goog-text-highlight {
   background-color: transparent !important;
   box-shadow: none !important;
@@ -708,7 +771,6 @@ body {
 .goog-te-balloon-frame {
   display: none !important;
 }
-
   </style>
 </head>
 <body data-theme="light">
@@ -745,19 +807,60 @@ body {
   </header>
 
   <!-- ==========================================================================
-       HERO FEATURED NEWS
+       HERO FEATURED NEWS CAROUSEL (SWAPPING CARDS)
        ========================================================================== -->
   <section class="hero-container">
-    <div class="hero-card">
-      <div class="hero-content">
-        <div class="badge-group">
-          <span class="badge badge-primary">Breaking News</span>
-          <span class="badge badge-gold">Season 6</span>
+    <div class="hero-carousel" id="heroCarousel">
+      
+      <!-- Slide 1 -->
+      <div class="carousel-slide active" style="background-image: url('Nemesis.jpg');">
+        <div class="hero-content">
+          <div class="badge-group">
+            <span class="badge badge-primary">Breaking News</span>
+            <span class="badge badge-gold">Season 6</span>
+          </div>
+          <h1 class="hero-title">Finale Episode Of Miraculous Season 6 Is Premiered!</h1>
+          <p class="hero-desc">Click the Link Below to watch the episode NOW!</p>
+          <a href="https://t.me/miraculousseason5ep26/3" class="btn btn-primary">Watch Episode S06E26 →</a>
         </div>
-        <h1 class="hero-title">Finale Episode Of Miraculous Season 6 Is Premiered!</h1>
-        <p class="hero-desc">Click the Link Below to watch the episode NOW!</p>
-        <a href="https://t.me/miraculousseason5ep26/3" class="btn btn-primary">Watch Episode S06E26 →</a>
       </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-slide" style="background-image: url('Season 7.jpg');">
+        <div class="hero-content">
+          <div class="badge-group">
+            <span class="badge badge-spoiler">Season 7 Teaser</span>
+            <span class="badge badge-gold">Exclusive</span>
+          </div>
+          <h1 class="hero-title">Season 7 Arriving November 2026!</h1>
+          <p class="hero-desc">Dark secrets and unexpected alliances threaten Paris in the dramatic next chapter.</p>
+          <a href="read more 2.html" class="btn btn-primary">Explore Season 7 News →</a>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-slide" style="background-image: url('Season 6.jpg');">
+        <div class="hero-content">
+          <div class="badge-group">
+            <span class="badge badge-primary">Full Recap</span>
+          </div>
+          <h1 class="hero-title">Season 6 Reaches Its Grand Finale</h1>
+          <p class="hero-desc">Relive all 26 episodes and review the full storyline before Season 7 premieres.</p>
+          <a href="read more.html" class="btn btn-primary">Read Full Recap →</a>
+        </div>
+      </div>
+
+      <!-- Navigation Arrows -->
+      <button class="carousel-arrow prev" id="heroPrevBtn" aria-label="Previous Slide">&#10094;</button>
+      <button class="carousel-arrow next" id="heroNextBtn" aria-label="Next Slide">&#10095;</button>
+
+      <!-- Indicator Dots -->
+      <div class="carousel-dots" id="heroDots">
+        <button class="carousel-dot active" data-slide="0" aria-label="Slide 1"></button>
+        <button class="carousel-dot" data-slide="1" aria-label="Slide 2"></button>
+        <button class="carousel-dot" data-slide="2" aria-label="Slide 3"></button>
+      </div>
+
     </div>
   </section>
 
@@ -805,7 +908,6 @@ body {
 
   <script>
   (function() {
-    // Explicit Local Target Date: November 21, 2026 00:00:00
     const targetDate = new Date(2026, 10, 21, 0, 0, 0).getTime();
 
     function updateTimer() {
@@ -836,8 +938,6 @@ body {
   })();
 </script>
 
-  </div>
-
   <!-- ==========================================================================
        MAIN LAYOUT: NEWS FEED + SIDEBAR
        ========================================================================== -->
@@ -854,7 +954,7 @@ body {
         <article class="card">
           <div class="card-img-wrapper">
             <span class="badge badge-spoiler" style="position: absolute; top: 10px; left: 10px; z-index: 2;">Season 6</span>
-            <img src="Season 6.jpg" auto=format&fit=crop&w=600&q=80" alt="Eiffel Tower Paris" class="card-img">
+            <img src="Season 6.jpg" alt="Eiffel Tower Paris" class="card-img">
           </div>
           <div class="card-body">
             <div class="card-meta">
@@ -870,7 +970,7 @@ body {
         <article class="card">
           <div class="card-img-wrapper">
             <span class="badge badge-spoiler" style="position: absolute; top: 10px; left: 10px; z-index: 2;">Season 7 Leak</span>
-            <img src="Season 7.jpg" auto=format&fit=crop&w=600&q=80" alt="Mysterious butterfly" class="card-img spoiler-text">
+            <img src="Season 7.jpg" alt="Mysterious butterfly" class="card-img spoiler-text">
           </div>
           <div class="card-body">
             <div class="card-meta">
@@ -885,7 +985,7 @@ body {
         <!-- Card 3 -->
         <article class="card">
           <div class="card-img-wrapper">
-            <img src="chibi.png" auto=format&fit=crop&w=600&q=80" alt="Action figure" class="card-img">
+            <img src="chibi.png" alt="Action figure" class="card-img">
           </div>
           <div class="card-body">
             <div class="card-meta">
@@ -904,7 +1004,7 @@ body {
 
 <div id="langSwitcherContainer"></div>
 
-    <!-- Language Selector Dropdown (Protected from Translation) -->
+    <!-- Language Selector Dropdown -->
 <div class="lang-switcher notranslate" translate="no">
   <label for="langSelect" id="lblLanguage">Language / Bhasha:</label>
   <select id="langSelect" class="notranslate" translate="no">
@@ -999,7 +1099,7 @@ body {
        JAVASCRIPT LOGIC
        ========================================================================== -->
   <script>
-    // 1. Day / Night Theme Switcher (Ladybug Red vs Cat Noir Green)
+    // 1. Theme Switcher Logic
     const themeToggleBtn = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
     const themeLabel = document.getElementById('themeLabel');
@@ -1036,81 +1136,110 @@ body {
       }
     });
 
-    // 3. Dynamic Episode Countdown Clock
-    function updateCountdown() {
-      // Dummy target date: 3 days, 14 hours from now
-      const targetDate = new Date(Date.now() + (3 * 24 * 60 * 60 * 1000) + (14 * 60 * 60 * 1000)).getTime();
-      
-      setInterval(() => {
-        const now = new Date().getTime();
-        const difference = targetDate - now;
+    // 3. Hero Carousel Swapping Logic
+    (function() {
+      const carousel = document.getElementById('heroCarousel');
+      if (!carousel) return;
 
-        const d = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const s = Math.floor((difference % (1000 * 60)) / 1000);
+      const slides = carousel.querySelectorAll('.carousel-slide');
+      const dots = carousel.querySelectorAll('.carousel-dot');
+      const prevBtn = document.getElementById('heroPrevBtn');
+      const nextBtn = document.getElementById('heroNextBtn');
 
-        document.getElementById('days').innerText = String(d).padStart(2, '0');
-        document.getElementById('hours').innerText = String(h).padStart(2, '0');
-        document.getElementById('mins').innerText = String(m).padStart(2, '0');
-        document.getElementById('secs').innerText = String(s).padStart(2, '0');
-      }, 1000);
-    }
+      let currentIndex = 0;
+      const autoInterval = 4000; // Change slide every 4 seconds
+      let timer;
 
-    updateCountdown();
+      function showSlide(index) {
+        slides[currentIndex].classList.remove('active');
+        dots[currentIndex].classList.remove('active');
+
+        currentIndex = (index + slides.length) % slides.length;
+
+        slides[currentIndex].classList.add('active');
+        dots[currentIndex].classList.add('active');
+      }
+
+      function startTimer() {
+        stopTimer();
+        timer = setInterval(() => {
+          showSlide(currentIndex + 1);
+        }, autoInterval);
+      }
+
+      function stopTimer() {
+        if (timer) clearInterval(timer);
+      }
+
+      // Event Controls
+      nextBtn.addEventListener('click', () => {
+        showSlide(currentIndex + 1);
+        startTimer();
+      });
+
+      prevBtn.addEventListener('click', () => {
+        showSlide(currentIndex - 1);
+        startTimer();
+      });
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          showSlide(index);
+          startTimer();
+        });
+      });
+
+      // Pause slide change when hovering mouse over carousel
+      carousel.addEventListener('mouseenter', stopTimer);
+      carousel.addEventListener('mouseleave', startTimer);
+
+      startTimer();
+    })();
   </script>
 
-<!-- Hidden Google Translate Element -->
-<div id="google_translate_element" style="display:none;"></div>
+  <!-- Hidden Google Translate Element -->
+  <div id="google_translate_element" style="display:none;"></div>
 
-<!-- Google Translate API Script -->
-<script type="text/javascript">
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-      pageLanguage: 'en',
-      autoDisplay: false
-    }, 'google_translate_element');
-  }
-</script>
-<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-<!-- Script to Connect Custom Dropdown to Google Translate Engine -->
-<script>
-  document.getElementById('langSelect').addEventListener('change', function () {
-    const selectedLang = this.value;
-
-    // Set Google Translate cookie
-    document.cookie = "googtrans=/en/" + selectedLang + "; path=/";
-    document.cookie = "googtrans=/en/" + selectedLang + "; domain=" + window.location.hostname + "; path=/";
-
-    // Trigger internal Google Translate selector
-    const googleCombo = document.querySelector('.goog-te-combo');
-    if (googleCombo) {
-      googleCombo.value = selectedLang;
-      googleCombo.dispatchEvent(new Event('change'));
-    } else {
-      window.location.reload();
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        autoDisplay: false
+      }, 'google_translate_element');
     }
-  });
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-// Monitor and instantly reset any inline top style applied by Google Translate
-const bodyObserver = new MutationObserver(() => {
-  if (document.body.style.top && document.body.style.top !== '0px') {
-    document.body.style.top = '0px';
-  }
-});
+  <script>
+    document.getElementById('langSelect').addEventListener('change', function () {
+      const selectedLang = this.value;
 
-// Start observing the body tag for style changes
-bodyObserver.observe(document.body, { 
-  attributes: true, 
-  attributeFilter: ['style'] 
-});
+      document.cookie = "googtrans=/en/" + selectedLang + "; path=/";
+      document.cookie = "googtrans=/en/" + selectedLang + "; domain=" + window.location.hostname + "; path=/";
 
-</script>
+      const googleCombo = document.querySelector('.goog-te-combo');
+      if (googleCombo) {
+        googleCombo.value = selectedLang;
+        googleCombo.dispatchEvent(new Event('change'));
+      } else {
+        window.location.reload();
+      }
+    });
 
-<script src="translator.js"></script>
+    const bodyObserver = new MutationObserver(() => {
+      if (document.body.style.top && document.body.style.top !== '0px') {
+        document.body.style.top = '0px';
+      }
+    });
 
-<script src="theme and translator.js"></script>
+    bodyObserver.observe(document.body, { 
+      attributes: true, 
+      attributeFilter: ['style'] 
+    });
+  </script>
+
+  <script src="translator.js"></script>
+  <script src="theme and translator.js"></script>
   
 </body>
 </html>
